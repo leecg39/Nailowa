@@ -5,11 +5,13 @@ export interface ServiceItem {
   price?: string;
 }
 
+export type CategoryType = 'SIMPLE' | 'FANCY' | 'WEDDING' | 'PEDI';
+
 export interface GalleryImage {
   id: string;
   src: string;
   alt: string;
-  category: 'simple' | 'fancy' | 'wedding' | 'pedi' | 'art';
+  category: CategoryType;
 }
 
 export enum NavLink {

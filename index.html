@@ -31,6 +31,15 @@
                 DEFAULT: '#F5F5F0',
                 dark: '#EBEBE0'
               }
+            },
+            keyframes: {
+              shimmer: {
+                '0%': { backgroundPosition: '200% 0' },
+                '100%': { backgroundPosition: '-200% 0' }
+              }
+            },
+            animation: {
+              shimmer: 'shimmer 2.5s infinite linear'
             }
           }
         }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from '../types';
+import { NavLink, GalleryImage } from '../types';
 
 const categories = [
   { id: 'ALL', label: '전체' },
@@ -9,62 +9,44 @@ const categories = [
   { id: 'PEDI', label: '페디' }
 ];
 
-// Updated to match the "Instagram Feed" aesthetic from the screenshot
-// Keywords: Red/Burgundy, Autumn/Leaves, Coffee/Cozy, Pedicure, Nude/Clean
-const galleryImages = [
-    "https://images.unsplash.com/photo-1596913735158-294747809935?q=80&w=800&auto=format&fit=crop", // Red/Burgundy Nails
-    "https://images.unsplash.com/photo-1509923880529-6b583f707f15?q=80&w=800&auto=format&fit=crop", // Autumn Leaves
-    "https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?q=80&w=800&auto=format&fit=crop", // Holding Coffee/Cozy
-    "https://images.unsplash.com/photo-1519017712384-1d53f6032774?q=80&w=800&auto=format&fit=crop", // Pedicure/Red
-    "https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800&auto=format&fit=crop", // Pink/Clean
-    "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop", // Dark/Green/Art
-    "https://images.unsplash.com/photo-1522337360705-8b13d5230394?q=80&w=800&auto=format&fit=crop", // Nude/Simple
-    "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800&auto=format&fit=crop", // Wedding/White
-    "https://images.unsplash.com/photo-1599692994968-3e4b787c8802?q=80&w=800&auto=format&fit=crop", // Glitter/Fancy
-    "https://images.unsplash.com/photo-1610992015732-2449b76344bc?q=80&w=800&auto=format&fit=crop", // Care/Holding Oil
-    "https://images.unsplash.com/photo-1506459225024-1428097a7e18?q=80&w=800&auto=format&fit=crop", // Red/Elegant
-    "https://images.unsplash.com/photo-1629213803454-e67c8702b851?q=80&w=800&auto=format&fit=crop"  // Detail/Macro
-];
-
-const galleryItems = galleryImages.map((src, i) => {
-  let cat = 'SIMPLE';
-  if (i === 3) cat = 'PEDI'; // The pedicure image
-  else if (i === 7) cat = 'WEDDING'; // The wedding image
-  else if (i === 0 || i === 5 || i === 8 || i === 10) cat = 'FANCY'; // Red/Dark/Glitter
-  
-  return {
-    id: `img-${i}`,
-    category: cat,
-    src: src,
-    alt: `Nail Art Design ${i + 1}`
-  };
-});
-
 // Individual Gallery Item Component to handle loading state
-const GalleryItem = ({ item }: { item: typeof galleryItems[0] }) => {
+const GalleryItem = ({ item }: { item: GalleryImage }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = "https://placehold.co/600x800/e7e5e4/78716c?text=Gallery+Item";
-    // If error occurs, we consider loading 'done' so the placeholder shows the error image
     setIsLoaded(true);
   };
 
   return (
-    <div className="relative aspect-[3/4] group overflow-hidden bg-stone-200 cursor-pointer shadow-sm">
-      {/* Loading Skeleton / Blur Effect */}
+    <div className="relative aspect-[3/4] group overflow-hidden bg-stone-100 cursor-pointer shadow-sm">
+      {/* Sophisticated Loading Placeholder */}
       <div 
-        className={`absolute inset-0 bg-stone-300 z-10 transition-opacity duration-700 ease-in-out ${
-          isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100 animate-pulse'
+        className={`absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-700 ease-in-out ${
+          isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`} 
-      />
+      >
+        {/* Warm Shimmer Gradient */}
+        <div 
+           className="absolute inset-0 w-full h-full bg-gradient-to-r from-stone-100 via-[#e7e5e4] to-stone-100 animate-shimmer"
+           style={{ backgroundSize: '200% 100%' }}
+        />
+        
+        {/* Subtle Minimalist Spinner */}
+        <div className="relative z-10 text-stone-400/40">
+           <svg className="animate-spin h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+           </svg>
+        </div>
+      </div>
 
-      {/* Image with Blur-up transition */}
+      {/* Image with Enhanced Blur-up & Scale Effect */}
       <img 
         src={item.src} 
         alt={item.alt} 
-        className={`w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-110 ${
-          isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
+        className={`w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-110 transform ${
+          isLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-2xl scale-110'
         }`}
         loading="lazy"
         onLoad={() => setIsLoaded(true)}
@@ -83,12 +65,16 @@ const GalleryItem = ({ item }: { item: typeof galleryItems[0] }) => {
   );
 };
 
-const Gallery: React.FC = () => {
+interface GalleryProps {
+  items: GalleryImage[];
+}
+
+const Gallery: React.FC<GalleryProps> = ({ items }) => {
   const [activeCategory, setActiveCategory] = useState('ALL');
 
   const filteredItems = activeCategory === 'ALL' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === activeCategory);
+    ? items 
+    : items.filter(item => item.category === activeCategory);
 
   return (
     <section id={NavLink.GALLERY} className="py-32 bg-white">
@@ -116,11 +102,17 @@ const Gallery: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {filteredItems.map((item) => (
-            <GalleryItem key={item.id} item={item} />
-          ))}
-        </div>
+        {filteredItems.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {filteredItems.map((item) => (
+              <GalleryItem key={item.id} item={item} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-stone-50 text-stone-400 font-light">
+            해당 카테고리의 이미지가 없습니다.
+          </div>
+        )}
       </div>
     </section>
   );

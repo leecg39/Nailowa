@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from '../types';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  onAdminClick: () => void;
+}
+
+const Contact: React.FC<ContactProps> = ({ onAdminClick }) => {
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = "https://placehold.co/800x400/e7e5e4/78716c?text=Location+Map";
   };
@@ -65,9 +69,12 @@ const Contact: React.FC = () => {
 
         <div className="border-t border-stone-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-stone-400 font-light">
           <p>&copy; 2024 NAILOWA. All rights reserved.</p>
-          <div className="flex gap-4 mt-4 md:mt-0 uppercase tracking-wider">
+          <div className="flex items-center gap-4 mt-4 md:mt-0 uppercase tracking-wider">
             <span className="cursor-pointer hover:text-stone-600">Instagram</span>
             <span className="cursor-pointer hover:text-stone-600">Privacy Policy</span>
+            <button onClick={onAdminClick} className="cursor-pointer hover:text-stone-900 font-bold text-stone-300 ml-4">
+              Admin
+            </button>
           </div>
         </div>
       </div>
