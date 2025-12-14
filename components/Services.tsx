@@ -6,25 +6,25 @@ const services = [
     title: "시그니처 젤 아트",
     eng: "Signature Gel Art",
     desc: "매달 트렌드를 반영한 '이달의 아트' 및 고객 맞춤형 커스텀 디자인 시술",
-    img: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1596913735158-294747809935?q=80&w=800&auto=format&fit=crop" // Red Nails
   },
   {
     title: "프리미엄 케어",
     eng: "Premium Care",
     desc: "손상된 손톱 복구 및 큐티클 정리를 위한 영양 집중 케어 프로그램",
-    img: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?q=80&w=800&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?q=80&w=800&auto=format&fit=crop" // Holding Oil Bottle
   },
   {
     title: "스파 페디큐어",
     eng: "Spa Pedicure",
     desc: "위생적인 풋 스파 시스템과 각질 관리를 포함한 릴랙싱 페디큐어",
-    img: "https://images.unsplash.com/photo-1519017712384-1d53f6032774?q=80&w=800&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1519017712384-1d53f6032774?q=80&w=800&auto=format&fit=crop" // Feet/Red
   },
   {
     title: "웨딩 & 이벤트",
     eng: "Wedding & Event",
     desc: "웨딩 촬영 및 본식, 휴가 등 특별한 날을 위한 스페셜 디자인 패키지",
-    img: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800&auto=format&fit=crop" // White/Wedding
   }
 ];
 

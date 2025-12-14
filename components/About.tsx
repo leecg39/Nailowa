@@ -16,7 +16,7 @@ const About: React.FC = () => {
             {/* Main Interior Shot */}
             <div className="col-span-8 row-span-6 overflow-hidden relative bg-stone-200">
               <img 
-                src="https://images.unsplash.com/photo-1630293420863-7e2c077d7f1d?q=80&w=1200&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?q=80&w=1200&auto=format&fit=crop" 
                 alt="Salon Interior" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
                 loading="lazy"
@@ -26,7 +26,7 @@ const About: React.FC = () => {
             {/* Detail Shot */}
             <div className="col-span-4 row-start-2 row-span-4 overflow-hidden relative shadow-xl -ml-8 lg:-ml-12 z-10 border-8 border-white bg-stone-200">
               <img 
-                src="https://images.unsplash.com/photo-1516069678086-92856dd97719?q=80&w=800&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop" 
                 alt="Nail Art Detail" 
                 className="w-full h-full object-cover"
                 loading="lazy"
